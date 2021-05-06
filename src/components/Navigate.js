@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from "./Search.js";
-import "../styles/Navigation.css";
+import "../styles/Navigate.css";
 
 function Navigate ({ handleSearchChange}){
     return (
