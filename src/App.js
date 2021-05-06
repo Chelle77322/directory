@@ -2,14 +2,14 @@ import React from 'react';
 import Content from "./components/Content";
 import Container from "./components/Container";
 import Banner from "./components/Banner";
-import "./App.css";
-import "./styles/Style.css";
+import Search from "./components/Search"
 
 function App(){
     return(
-        <div className="app">
+        <div className="App">
             <Container>
                 <Banner/>
+                <Search/>
                 <Content />
             </Container>
         </div>
