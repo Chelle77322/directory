@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import DataTable from "./DataTable";
-import Navigation from "./Navigation";
+import Navigate from "./Navigation";
 import Api from "../utils/Api";
 export default class DataArea extends Component{
     state = {
@@ -57,7 +57,7 @@ export default class DataArea extends Component{
         });
         this.setState({filteredUsers: filteredList});
     }
-    componentsDidMount(){
+    componentDidMount(){
         Api.getUsers().then(results =>{
             this.setState({
                 users: results.data.results,
@@ -68,7 +68,7 @@ export default class DataArea extends Component{
     render () {
         return (
             <>
-            <Navigation handleSearchChange={this.handleSearchChange} />
+            <Navigate handleSearchChange={this.handleSearchChange} />
             <div className="data-area">
                 <DataTable headings = {this.headings}
                 users ={this.state.filteredUsers}
