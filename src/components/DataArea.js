@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import DataTable from "./DataTable";
-import Navigate from "./Navigation";
+import Navigate from "./Navigate";
 import Api from "../utils/Api";
 export default class DataArea extends Component{
     state = {
