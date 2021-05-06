@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/directory/directory/static/css/main.70cfa685.chunk.css",
-    "main.js": "/directory/directory/static/js/main.cc98b44a.chunk.js",
-    "main.js.map": "/directory/directory/static/js/main.cc98b44a.chunk.js.map",
-    "runtime-main.js": "/directory/directory/static/js/runtime-main.1eb7a34f.js",
-    "runtime-main.js.map": "/directory/directory/static/js/runtime-main.1eb7a34f.js.map",
-    "static/js/2.ff9b7b02.chunk.js": "/directory/directory/static/js/2.ff9b7b02.chunk.js",
-    "static/js/2.ff9b7b02.chunk.js.map": "/directory/directory/static/js/2.ff9b7b02.chunk.js.map",
-    "static/js/3.9b6e12df.chunk.js": "/directory/directory/static/js/3.9b6e12df.chunk.js",
-    "static/js/3.9b6e12df.chunk.js.map": "/directory/directory/static/js/3.9b6e12df.chunk.js.map",
-    "index.html": "/directory/directory/index.html",
-    "static/css/main.70cfa685.chunk.css.map": "/directory/directory/static/css/main.70cfa685.chunk.css.map",
-    "static/js/2.ff9b7b02.chunk.js.LICENSE.txt": "/directory/directory/static/js/2.ff9b7b02.chunk.js.LICENSE.txt",
-    "static/media/background.babaf285.jpg": "/directory/directory/static/media/background.babaf285.jpg"
+    "main.css": "/directory/static/css/main.463399ab.chunk.css",
+    "main.js": "/directory/static/js/main.97235b29.chunk.js",
+    "main.js.map": "/directory/static/js/main.97235b29.chunk.js.map",
+    "runtime-main.js": "/directory/static/js/runtime-main.0036492b.js",
+    "runtime-main.js.map": "/directory/static/js/runtime-main.0036492b.js.map",
+    "static/js/2.ff9b7b02.chunk.js": "/directory/static/js/2.ff9b7b02.chunk.js",
+    "static/js/2.ff9b7b02.chunk.js.map": "/directory/static/js/2.ff9b7b02.chunk.js.map",
+    "static/js/3.9b6e12df.chunk.js": "/directory/static/js/3.9b6e12df.chunk.js",
+    "static/js/3.9b6e12df.chunk.js.map": "/directory/static/js/3.9b6e12df.chunk.js.map",
+    "index.html": "/directory/index.html",
+    "static/css/main.463399ab.chunk.css.map": "/directory/static/css/main.463399ab.chunk.css.map",
+    "static/js/2.ff9b7b02.chunk.js.LICENSE.txt": "/directory/static/js/2.ff9b7b02.chunk.js.LICENSE.txt",
+    "static/media/background.babaf285.jpg": "/directory/static/media/background.babaf285.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.1eb7a34f.js",
+    "static/js/runtime-main.0036492b.js",
     "static/js/2.ff9b7b02.chunk.js",
-    "static/css/main.70cfa685.chunk.css",
-    "static/js/main.cc98b44a.chunk.js"
+    "static/css/main.463399ab.chunk.css",
+    "static/js/main.97235b29.chunk.js"
   ]
 }
