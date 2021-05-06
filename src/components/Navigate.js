@@ -1,12 +1,12 @@
 import React from 'react';
-import SearchBox from "./SearchBox.js";
+import Search from "./Search.js";
 import "../styles/Navigation.css";
 
 function Navigate ({ handleSearchChange}){
     return (
         <Navigate className = "navbar navbar-expand navbar-light bg-light">
             <div className = "navbar-collapse row" id = "navbarNav">
-            <SearchBox handleSearchChange = {handleSearchChange}/>
+            <Search handleSearchChange = {handleSearchChange}/>
             </div>
         </Navigate>
     );
