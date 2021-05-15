@@ -1,11 +1,12 @@
-import React from 'react';
-import "../styles/Container.css";
+import React from "react";
+import DataArea from "./DataArea";
+import " ../styles/Container.css";
 
-function Container({children}){
-    return(
-        <div className = "wrapper">
-            {children}
-        </div>
+function Container () {
+    return (
+        <>
+        <DataArea />
+        </>
     );
-}
+};
 export default Container;
