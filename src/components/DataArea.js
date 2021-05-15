@@ -1,81 +1,86 @@
-import React , {Component} from 'react';
+import React, {useState, useEffect } from 'react';
 import DataTable from "./DataTable";
 import Navigate from "./Navigate";
 import Api from "../utils/Api";
-export default class DataArea extends Component{
-    state = {
-        users: [{}],
-        order: "ascend",
-        filteredUsers: [{}]
-    }
-    headings = [
-        {name: "image", width: "12%"},
-        {name: "name", width: "12%"},
-        {name: "dob", width: "12%"},
-        {name: "email", width: "32%"},
-        {name:"phone", width: "20%"}
-    ]
-    handleSort = heading =>{
-        if(this.state.order === "ascend")
-        {
-            this.setState({
-                order: "descend"
-            })
-        } else{
-            this.setState({
-                order: "ascend"
-            })
+import "../styles/DataArea.css";
+
+const DataArea = () => {
+    const [developerState, setDeveloperState] = useState({
+        users: [],
+        order: "descend",
+        filteredUsers: [],
+        headings : [
+            {name: "Image", width:"10%", order: "descend"},
+            {name: "name", width:"10%", order: "descend"},
+            {name: "phone", width:"20%", order: "descend"},
+            {name: "email", width:"20%", order: "descend"},
+            {name: "dob", width:"10%", order: "descend"},
+        ]
+    });
+    const handleSort = heading => {
+        let currentOrder = developerState.headings.filter(elem => elem.name === heading)
+        .map (elem => elem.order).toString();
+
+        if (currentOrder === "descend"){
+            currentOrder = "ascend"
+        } else {
+            currentOrder = "descend";
         }
-        const compareFnc = (a, b) => 
-        {
-            if(this.state.order === "descend")
-            {
-                if (a[heading] === undefined)
-                {
+        const compareFnc = (a,b) => {
+            if (currentOrder === "ascend"){
+                if(a[heading]=== undefined){
                     return 1;
-                } else if (b[heading] === undefined)
-                {
+                } else if (b[heading]=== undefined){
                     return -1;
-                }
-                else if (heading === "name")
-                {
+                } else if (heading === "name"){
                     return a[heading].first.localeCompare(b[heading].first);
+                } else if (heading === "dob"){
+                    return a[heading].age - b[heading].age;
                 } else {
-                    return a[heading] - b[heading];
+                    return b[heading].localeCompare(a[heading]);
                 }
-            }       
-        }
-        const sortedUsers = this.state.filteredUsers.sort(compareFnc);
-        this.setState({filteredUsers: sortedUsers});
-    }
-    handleSearchChange = event => {
-        console.log(event.target.value);
-        const filter = event.target.value;
-        const filteredList = this.state.users.filter(item => {
-            let values = Object.values(item).join("").toLowerCase();
-            return values.indexOf(filter.toLowerCase()) !== -1;
+                }
+            };
+        const sortedUsers = developerState.filteredUsers.sort(compareFnc);
+        const updateHeadings = developerState.headings.map(elem => {
+            elem.order = elem.name === heading ?
+            currentOrder: elem.order;
+            return elem
         });
-        this.setState({filteredUsers: filteredList});
-    }
-    componentDidMount(){
-        Api.getUsers().then(results =>{
-            this.setState({
+        setDeveloperState({ ...developerState, filteredUsers: sortedUsers, headings: updateHeadings
+        });
+        };
+    const handleSearchChange = event => {
+        const filter = event.target.value;
+        const filteredList = developerState.users.filter(item => {
+            let values = item.name.first.toLowerCase() + "" + item.name.last.toLowerCase();
+            console.log(filter, values)
+            if (values.indexOf(filter.toLowerCase())!== -1){
+                return item
+            };
+        });
+        setDeveloperState({...developerState, filteredUsers: filteredList});
+    };
+    //For more information on useeffect go to https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
+    useEffect(() =>{
+        Api.getUsers().then(results => {
+            console.log(results.data.results);
+            setDeveloperState({
+                ...developerState,
                 users: results.data.results,
                 filteredUsers: results.data.results
             });
         });
-    }
-    render () {
-        return (
-            <>
-            <Navigate handleSearchChange={this.handleSearchChange} />
-            <div className="data-area">
-                <DataTable headings = {this.headings}
-                users ={this.state.filteredUsers}
-                handleSort={this.handleSort}
-                />
+    },[]);
+    return (
+        <DataArea.Provider value = {{ developerState, handleSearchChange, handleSort }}>
+            <Navigate />
+            <div className = "data-area">
+            {developerState.filteredUsers.length > 0 ?
+            <DataTable /> :<div></div>}
             </div>
-            </>
-        );
-    }
-}
+        </DataArea.Provider>
+    );
+        
+    };
+export default DataArea;
