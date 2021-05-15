@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import "../styles/DataBody.css";
+import DataArea from  './DataArea';
 
+const DataBody = () => {
+    const state = useState(DataArea);
 
-function DataBody ({users}){
     function formatDate(date){
         const dateArray = date.split("-");
         const year = dateArray[0];
@@ -9,40 +12,46 @@ function DataBody ({users}){
         const dayArray = dateArray[2].split("T");
         const day = dayArray[0];
         const formattedDate = [day, month, year].join("-");
-        return formattedDate;
+        return formattedDate;  
     }
-return (
-    <tbody>
-        {users[0] !== undefined && users[0].name !== undefined ? 
-        (
-            users.map(({ login,picture, name,dob, email,phone}) => { 
-return (
-<tr key = {login.uuid}>
-    <td data-th ="image" className = "align-middle">
-     <img src = {picture.medium} alt = {"profile image for" + name.first + " " + name.last}
-     className = "img-responsive rounded"/>
-    </td>
-     <td data-th ="name" className = "name-cell align-middle">
-      {name.first} {name.last}
-    </td>
-    <td data-th="dob" className="align-middle">
-   {formatDate(dob.date)}
-   </td>
-    <td data-th="phone" className = "align-middle">
-      {phone}
-     </td>
-      <td data-th = "email" className = "align-middle">
-<a href = {"mailto:" + email} target = "blank">
-              {email}
-          </a>
-      </td>
-    </tr>
+    return (
+        <tbody>
+            {state.developerState.filteredUsers[0] !== undefined && state.developerState.filteredUsers[0].name !== undefined ? (
+             state.developerState.filteredUsers.map(({login, name, picture, phone, email, dob})=>{
+                 return (
+                     <tr key = {login.uuid}>
+                         <td data-th = "Image" className = "align-middle">
+                             <img src = {picture.medium}
+                             alt={"profile image for " +name.first + "" + name.last}
+                             className = "img-responsive"/>
+                         </td>
+                        <td data-th = "Name"
+                        className = "name-cell align-middle">
+                            {name.first} {name.last}
+                        </td>
+                        <td data-th = "Phone"
+                            className = "align-middle">
+                            {phone}
+                        </td>
+
+                        <td data-th = "Email"
+                        className = "align-middle">
+                            <a href = {"mailto:" + email} target ="_blank">
+                                {email}
+                            </a>
+                        </td>
+                        <td data-th = "DOB"
+                        className = "align-middle">
+                            {formatDate(dob.date)}
+                        </td>
+                     </tr>
+                 );
+             })  
+            ): (
+                <> </>
+            )}
+          
+        </tbody>
     );
-})
-) : (
-<></>
-)}
-</tbody>
-);
 }
 export default DataBody;

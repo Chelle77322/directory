@@ -1,27 +1,34 @@
-import React from 'react';
-import DataBody from "./DataBody";
+import React, { useState } from 'react';
+import DataBody from './DataBody';
+import "../styles/DataTable.css";
+import DataArea from "./DataArea";
 
-function DataTable({headings, users, handleSort})
-{
- return (
-     <div className = "datatable mt-7">
-     <table id = "table" className = "table table-striped table-hover table condensed">
- <thead class = "head">
-<tr>
- {headings.map(({name, width}) => {
+const DataTable = () => {
+    const state = useState(DataArea);
     return (
-    <th className ="col" key = {name} style = {{width}} onClick = { () => {
-        handleSort(name.toLowerCase());
-    }} >
-    {name}<span className = "pointer"><i class = "fas fa-sort"></i></span>
-    </th>
+   <div className = "datatable mt-5">
+     <table id = "table" className = "table table-striped table-hover table-condensed">
+        <thead>
+           <tr>
+             {state.developerState.headings.map(({name, width}) => {
+            return(
+                 <th className = "col" key={name}
+                  style = {{width}}
+                   onClick={() => {
+                    
+                     state.handleSort(name.toLowerCase());
+                     }}
+                     >
+                    {name}
+                    <span className = "pointer"></span>
+                    </th>
+                            );
+                        })}
+                    </tr>
+                </thead>
+                <DataBody />
+            </table>
+        </div>
     );
-    })}
-    </tr>
-    </thead>
-         <DataBody users = {users}/>
-     </table>
-     </div>
- );
 }
 export default DataTable;

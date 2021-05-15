@@ -4,12 +4,12 @@ import SearchBar from "./componets/SearchBar";
 import Header from "./components/Header";
 import DataTable from "./components/DataTable";
 import {Container} from "./styles"
-import { results as initialEmployees } from "./EmployeeData.json";
+import Api from './utils/Api';
 
 
 const App = () => {
     const [data, setData] = useState({
-        employees: initialEmployees
+        employees: Api
     })
     const {employees} = data
 
@@ -18,13 +18,13 @@ const App = () => {
         const searchInput = e.target.value.toLowerCase();
         let newemployees = [];
         if (searchInput !== " "){
-            newemployees = initialEmployees.filter(employee => {
+            newemployees = Api.filter(employee => {
                 return (
                     searchInput === employee.name.first.toLowerCase().slice(0, searchInput.length)
                 )
             })
         } else {
-            newemployees = initialEmployees;
+            newemployees = Api;
         }
         setData ({employees:newemployees})
 
