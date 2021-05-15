@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import background from '../styles/background.jpg' ; // Tell webpack this JS file uses this image
+import "../styles/Banner.css";
 
 console.log(background); // /background.jpg
 
-export default class Banner extends Component{
 
-    render(){
+
+   function Banner () {
         return (
             <div className = "header">
                 <img src={background} alt="City scene at night" />
@@ -14,7 +15,7 @@ export default class Banner extends Component{
             </div>
         )
     }
-}
+
 
 
 
