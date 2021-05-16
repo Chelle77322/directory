@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Api from " ../utils/Api";
+import Context from "../utils/Context";
 const Search = () => { 
-const state = useState(Api);
+const state = useState(Context);
     return (
      <div className = "searchbox">
          <div className = "input-group">
