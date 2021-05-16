@@ -1,0 +1,13 @@
+.datatable .col{
+    cursor: hand;
+}
+.datatable .col .pointer:after {
+    font-size: 85%;
+    content: " ";
+    margin-right: 22px;
+}
+.datatable .col .pointer:hover:after {
+    font-size: 85%;
+    content: " ⬇ ";
+    margin-right: 0;
+}
