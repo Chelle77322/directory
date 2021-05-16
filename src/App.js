@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Row, Col} from 'reactstrap';
-import SearchBar from "./componets/SearchBar";
-import Header from "./components/Header";
+import Search from "./components/Search";
+import Banner from "./components/Banner";
 import DataTable from "./components/DataTable";
-import {Container} from "./styles"
+import {Container} from "./styles/Container.css";
 import Api from './utils/Api';
 
 
@@ -48,14 +48,14 @@ const App = () => {
             <Container>
                 <Row>
                     <Col>
-                    <Header></Header>
+                    <Banner></Banner>
                     </Col>
                 </Row>
             <Row>
                 <Col sm = "12" md= {{size: 6, offset: 3}}>
-                <SearchBar handleChange = {handleChange}>
+                <Search handleChange = {handleChange}>
 
-                </SearchBar>
+                </Search>
                 </Col>
             </Row>
             <Row>
