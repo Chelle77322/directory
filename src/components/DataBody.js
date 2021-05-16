@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import "../styles/DataBody.css";
-import DataArea from  './DataArea';
+import Context from '../utils/Context';
 
 const DataBody = () => {
-    const state = useState(DataArea);
+    const context = useContext(Context);
 
     function formatDate(date){
         const dateArray = date.split("-");
@@ -16,8 +16,8 @@ const DataBody = () => {
     }
     return (
         <tbody>
-            {state.developerState.filteredUsers[0] !== undefined && state.developerState.filteredUsers[0].name !== undefined ? (
-             state.developerState.filteredUsers.map(({login, name, picture, phone, email, dob})=>{
+            {context.developerState.filteredUsers[0] !== undefined && context.developerState.filteredUsers[0].name !== undefined ? (
+             context.developerState.filteredUsers.map(({login, name, picture, phone, email, dob})=>{
                  return (
                      <tr key = {login.uuid}>
                          <td data-th = "Image" className = "align-middle">
@@ -34,9 +34,9 @@ const DataBody = () => {
                             {phone}
                         </td>
 
-                        <td data-th = "Email"
-                        className = "align-middle">
-                            <a href = {"mailto:" + email} target ="_blank">
+                <td data-th = "Email"
+                className = "align-middle">
+                    <a href = {"mailto:" + email}>
                                 {email}
                             </a>
                         </td>
