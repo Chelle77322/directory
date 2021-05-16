@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import DataBody from './DataBody';
 import "../styles/DataTable.css";
-import DataArea from "./DataArea";
+import Context from "../utils/Context"
 
 const DataTable = () => {
-    const state = useState(DataArea);
+    const state = useContext(Context);
     return (
    <div className = "datatable mt-5">
      <table id = "table" className = "table table-striped table-hover table-condensed">
