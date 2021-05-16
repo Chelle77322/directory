@@ -15,7 +15,7 @@ console.log(background); // /background.jpg
             </div>
         )
     }
-
+export default Banner;
 
 
 
