@@ -1,8 +1,10 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import DataTable from "./DataTable";
 import Navigate from "./Navigate";
 import Api from "../utils/Api";
 import "../styles/DataArea.css";
+import Context from "../utils/Context";
+
 
 const DataArea = () => {
     const [developerState, setDeveloperState] = useState({
@@ -21,15 +23,16 @@ const DataArea = () => {
         let currentOrder = developerState.headings.filter(elem => elem.name === heading)
         .map (elem => elem.order).toString();
 
-        if (currentOrder === "descend"){
+        if (currentOrder === "descend") {
             currentOrder = "ascend"
         } else {
             currentOrder = "descend";
         }
-        const compareFnc = (a,b) => {
+        const compareFnc = (a, b) => {
             if (currentOrder === "ascend"){
-                if(a[heading]=== undefined){
+                if(a[heading] === undefined){
                     return 1;
+
                 } else if (b[heading]=== undefined){
                     return -1;
                 } else if (heading === "name"){
@@ -37,8 +40,20 @@ const DataArea = () => {
                 } else if (heading === "dob"){
                     return a[heading].age - b[heading].age;
                 } else {
-                    return b[heading].localeCompare(a[heading]);
+                    return a[heading].localeCompare(b[heading]);
                 }
+                }else {
+                    if (a[heading]=== undefined){
+                        return 1;
+                    } else if (b[heading]=== undefined){
+                        return -1;
+                    } else if (heading === "name"){
+                        return b[heading].first.localeCompare(a[heading].first);
+                    }else if (heading === "dob"){
+                        return b[heading].age - a[heading].age;
+                    } else {
+                        return b[heading].localeCompare(a[heading]);
+                    }
                 }
             };
         const sortedUsers = developerState.filteredUsers.sort(compareFnc);
@@ -51,18 +66,18 @@ const DataArea = () => {
         });
         };
     const handleSearchChange = event => {
-        const filter = event.target.value;
-        const filteredList = developerState.users.filter(item => {
-            let values = item.name.first.toLowerCase() + "" + item.name.last.toLowerCase();
-            console.log(filter, values)
-            if (values.indexOf(filter.toLowerCase())!== -1){
-                return item
-            };
-        });
+    const filter = event.target.value;
+    const filteredList = developerState.users.filter(item => {
+        let values = item.name.first.toLowerCase() + " " + item.name.last.toLowerCase();
+        console.log(filter, values)
+      if(values.indexOf(filter.toLowerCase()) !== -1) {
+        return item
+      };
+      });
         setDeveloperState({...developerState, filteredUsers: filteredList});
     };
     //For more information on useeffect go to https://stackoverflow.com/questions/53120972/how-to-call-loading-function-with-react-useeffect-only-once
-    useEffect(() =>{
+    useEffect(() => {
         Api.getUsers().then(results => {
             console.log(results.data.results);
             setDeveloperState({
@@ -71,15 +86,15 @@ const DataArea = () => {
                 filteredUsers: results.data.results
             });
         });
-    },[]);
+    }, []);
     return (
-        <DataArea.Provider value = {{ developerState, handleSearchChange, handleSort }}>
+        <Context.Provider value = {{ developerState, handleSearchChange, handleSort }}>
             <Navigate />
             <div className = "data-area">
             {developerState.filteredUsers.length > 0 ?
             <DataTable /> :<div></div>}
             </div>
-        </DataArea.Provider>
+        </Context.Provider>
     );
         
     };
