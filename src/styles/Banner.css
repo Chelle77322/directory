@@ -1,7 +1,19 @@
 .header{
-    
      color: #edeef0;
      padding: 10px;
      border-bottom-color: #161e2e;
      border-bottom-style: solid;
+     background-blend-mode: multiply;
+     height: 15%;
+ }
+ .header-img{
+     height:200px;
+     background-size: cover;
+     background-image: linear-gradient(to bottom #161e2e, #9097a7);
+     background-image:url("./background.jpg");
+     background-blend-mode: luminosity;
+     font-family:"K2D", 'sans-serif';
+     font-style: normal;
+     font-size: 58px;
+     text-align: center;
  }

@@ -8,7 +8,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['K2D Web:300,400,700', 'sans-serif']
+    families: ['K2D:300,400,700', 'sans-serif']
   }
 });
 
